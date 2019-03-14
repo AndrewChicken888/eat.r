@@ -33,13 +33,7 @@ function init() {
 	
 	//Check if the user is on a mobile device and fix graphics accordingly
 	//alert(isMobileDevice());
-	if (isMobileDevice()) {
-		document.getElementById("headerText").style.fontSize = "24px";
-		document.getElementsByTagName("p")[0].style.fontSize = "14px";
-		document.getElementsByTagName("p")[1].style.fontSize = "14px";
-		document.getElementsByTagName("h2")[0].style.fontSize = "18px";
-		document.getElementById("main_container").style.top = "90px";
-	} else {
+	if (!isMobileDevice()) {
 		document.getElementById("cCont").style.float = "left";
 		document.getElementById("rCont").style.float = "left";
 	}
