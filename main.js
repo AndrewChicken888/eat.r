@@ -177,7 +177,7 @@ function addCheckbox(name, number) {
 		//actualname += name.charAt(i);
 		pos++;
 	}*/
-	document.getElementById("restaurants").innerHTML += "<input type='checkbox' id=\""+name+"\" name=\""+name+"\" value='"+name+"'><label for='r"+number+"'> "+name+"</label><br>";
+	document.getElementById("restaurants").innerHTML += "<input type='checkbox' id=\""+name+"\" name=\""+name+"\" value='"+name+"'><label for=\""+name+"\"> "+name+"</label><br>";
 }
 
 //Runner function
