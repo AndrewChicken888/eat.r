@@ -71,8 +71,10 @@ input[type=checkbox]:hover {
 label:hover {
 	cursor:pointer;
 }
-
-#randomize {
+.newRestaurant {
+	display:inline-block;
+}
+button {
     padding-left:5px;
     padding-right:5px;
 	padding-top:5px;
@@ -87,12 +89,12 @@ label:hover {
     white-space: nowrap;
     overflow:hidden;
 
-    width:120px;
-    height:40px;
+    width:108px;
+    height:35px;
 	font-style:bold;
-	font-size:20px;
+	font-size:18px;
 }
-#randomize:hover {
+button:hover {
 	background-color:#ff8800;
 	color:#910000;
 	cursor:pointer;

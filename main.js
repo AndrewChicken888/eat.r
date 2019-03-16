@@ -3,31 +3,140 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
+//Cookie tools (borrowed from w3schools)
+function setCookie(cname) {
+  var d = new Date();
+  d.setTime(d.getTime() + (1825*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = "r" + nextR + "=" + cname + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+//Delete a cookiefunction setCookie(cname,cvalue,exdays)
+function deleteCookie(cname) {
+  document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+}
+
+//Example cookie:
+/*
+ * setCookie("username", "John Doe", 1825);
+ */
+
+//Graphics variables
 var cHeight = 0;
 var cVisible = false;
 var rHeight = 0;
 var rVisible = false;
 
+//Arrays to store the names of each restaurant in a category
+var nameFastFood = ["Arby's", "BoJangle's", "Chick Fil'A", "McDonald's", "Taco Bell", "Wendy's", "Zaxby's", "KFC"];
+var nameChainSitdown = ["Applebee's", "TGIFriday's", "Chipolte", "O'Charlie's", "Fazoli's", "Olive Garden", "Chili's"];
+var nameMexican = ["Taco Bell", "Taco John's", "Salsa Rita's", "Moe's"];
+var nameItalian = ["Fazoli's", "Olive Garden"];
+var nameOriental = [];
+var nameAmerican = ["Arby's", "McDonald's", "Wendy's", "Applebee's", "TGIFriday's", "Chipolte", "O'Charlie's", "Chili's"];
+var nameChicken = ["BoJangle's", "Chick Fil'A", "Zaxby's", "KFC"];
+var nameAll = ["Arby's", "BoJangle's", "Chick Fil'A", "McDonald's", "Taco Bell", "Wendy's", "Zaxby's", "KFC", "Applebee's", "TGIFriday's", "Chipolte", "O'Charlie's", "Fazoli's", "Olive Garden", "Chili's", "Taco John's", "Salsa Rita's", "Moe's"];
+var nameCookie = [];
+
+//Arrays to store the checked/unchecked values of each restaurant in a category respective to their names in the arrays above
 var catFastFood = [false, false, false, false, false, false, false, false];
-var catMexican = [false, false];
-var catItalian = [false, false, false, false];
-var catOriental = [false];
-var catAmerican = [false, false, false, false, false];
-var catChicken = [false, false, false];
-var catAll = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+var catChainSitdown = [false, false, false, false, false, false, false];
+var catMexican = [false, false, false, false];
+var catItalian = [false, false];
+var catOriental = [];
+var catAmerican = [false, false, false, false, false, false, false, false];
+var catChicken = [false, false, false, false];
+var catAll = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
-var nameFastFood = ["r2", "r3", "r5", "r9", "r13", "r14", "r15"];
-var nameMexican = ["r10", "r13"];
-var nameItalian = ["r4", "r7", "r11", "r12"];
-var nameOriental = ["r8"];
-var nameAmerican = ["r1", "r2", "r6", "r9", "r14"];
-var nameChicken = ["r3", "r5", "r15"];
-var nameAll = ["r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12","r13","r14","r15"];
-
+//Temporary array that will update categories being checked or not based on if all restaurants in that category are checked
 var tempCheck = [true];
+var nextR = 0;
+var tempStorage = "";
+var tempName = "";
+var tempCat = "";
+		
+//This function retrieves all restaurant data from the stored cookies
+function getCookies() {
+	if (document.cookie != "") {		
+		for (i=0;i<document.cookie.length;i++) {
+			//Make sure there are more cookies to grab
+			if (document.cookie.indexOf("r"+i) == -1) {nextR=i;i=document.cookie.length;}
+			else {
+				//Retrieve the latest cookie
+				tempStorage = getCookie("r"+i);
+				
+				//Split the cookie into restaurant and category (divider = '|')
+				tempName = tempStorage.substring(0,tempStorage.indexOf("|"));
+				tempCat = tempStorage.substring(tempStorage.indexOf("|")+1,tempStorage.length);
+				nameCookie.push(tempName);
+				switch(tempCat) {
+					case "ff":
+						nameFastFood.push(tempName);
+						catFastFood.push(false);
+						break;
+					case "cs":
+						nameChainSitdown.push(tempName);
+						catChainSitdown.push(false);
+						break;
+					case "m":
+						nameMexican.push(tempName);
+						catMexican.push(false);
+						break;
+					case "i":
+						nameItalian.push(tempName);
+						catItalian.push(false);
+						break;
+					case "o":
+						nameOriental.push(tempName);
+						catOriental.push(false);
+						break;
+					case "am":
+						nameAmerican.push(tempName);
+						catAmerican.push(false);
+						break;
+					case "c":
+						nameChicken.push(tempName);
+						catChicken.push(false);
+						break;
+					default:
+						nameAll.push(tempName);
+						nameAll.push(false);
+				}
+			}
+		}
+	}
+}
+
+//This function adds a new restaurant checkboxes
+function addCheckbox(name, number) {
+	document.getElementById("restaurants").innerHTML += "<input type='checkbox' id='r"+number+"' name='"+name+"' value='"+name+"'><label for='r"+number+"'> "+name+"</label><br>";
+}
 
 //Runner function
 function init() {
+	//Retrieve cookies
+	getCookies();
+	
+	//Load checkboxes
+	for (i=0;i<nameAll.length;i++) {
+		addCheckbox(nameAll[i],i+1);
+	}
 	document.getElementById("main_container").style.top = "120px";
 	document.getElementById("categories").style.height = cHeight+"px";
 	
@@ -40,16 +149,16 @@ function init() {
 	
 	window.setInterval(function(){
 		//Graphic update to hide or show the categories and restaurants
-		if (cVisible && cHeight < 190) {
-			cHeight += 10;
+		if (cVisible && cHeight < 192) {
+			cHeight += 48;
 		} else if (!cVisible && cHeight > 0) {
-			cHeight -= 10;
+			cHeight -= 48;
 		}
 		document.getElementById("categories").style.height = cHeight+"px";
-		if (rVisible && rHeight < 380) {
-			rHeight += 15;
+		if (rVisible && rHeight < 24*nameAll.length) {
+			rHeight += 48;
 		} else if (!rVisible && rHeight > 0) {
-			rHeight -= 15;
+			rHeight -= 48;
 		}
 		document.getElementById("restaurants").style.height = rHeight+"px";		
 		//Check to make sure all checkboxes are updated		

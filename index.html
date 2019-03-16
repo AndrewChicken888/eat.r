@@ -10,6 +10,14 @@
 		<h2>Welcome to eat.r!</h2>
 		<p>This program will randomly choose a restaurant for you to eat at based off which categories and restaurants you select!</p>
 		<br>
+		<p style="color:#ffe500;">Add a local restaurant:</p>
+		<p class="newRestaurant">Name: </p>
+		<input type="input" id="newName" class="newRestaurant" placeholder="Name">
+		<p class="newRestaurant">Category: </p>
+		<input type="input" id="newCategory" class="newRestaurant" placeholder="Category">
+		<button type="button" class="newRestaurant" id="inputNew" onclick="setCookie(document.getElementById('newName') + '|' + document.getElementById('newCategory'))">Input</button>
+		<br>
+		<br>
 		<button type="button" id="randomize" onclick="generate()">Randomize</button>
 		<br>
 		<br>
@@ -20,17 +28,19 @@
 		<div class="group" id="categories">
 			<input onclick="updateCategoryArray(1)" type="checkbox" id="c1" name="c1" value="fast_food"><label for="c1"> Fast Food</label>
 			<br>
-			<input onclick="updateCategoryArray(2)" type="checkbox" id="c2" name="c2" value="mexican"><label for="c2"> Mexican</label>
+			<input onclick="updateCategoryArray(2)" type="checkbox" id="c2" name="c2" value="chain_sitdown"><label for="c2"> Chain Sitdown</label>
 			<br>
-			<input onclick="updateCategoryArray(3)" type="checkbox" id="c3" name="c3" value="italian"><label for="c3"> Italian</label>
+			<input onclick="updateCategoryArray(3)" type="checkbox" id="c3" name="c3" value="mexican"><label for="c3"> Mexican</label>
 			<br>
-			<input onclick="updateCategoryArray(4)" type="checkbox" id="c4" name="c4" value="oriental"><label for="c4"> Oriental</label>
+			<input onclick="updateCategoryArray(4)" type="checkbox" id="c4" name="c4" value="italian"><label for="c4"> Italian</label>
 			<br>
-			<input onclick="updateCategoryArray(5)" type="checkbox" id="c5" name="c5" value="american"><label for="c5"> American</label>
+			<input onclick="updateCategoryArray(5)" type="checkbox" id="c5" name="c5" value="oriental"><label for="c5"> Oriental</label>
 			<br>
-			<input onclick="updateCategoryArray(6)" type="checkbox" id="c6" name="c6" value="chicken"><label for="c6"> Chicken</label>
+			<input onclick="updateCategoryArray(6)" type="checkbox" id="c6" name="c6" value="american"><label for="c6"> American</label>
 			<br>
-			<input onclick="updateCategoryArray(7)" type="checkbox" id="c7" name="c7" value="all"><label for="c7"> All</label>
+			<input onclick="updateCategoryArray(7)" type="checkbox" id="c7" name="c7" value="chicken"><label for="c7"> Chicken</label>
+			<br>
+			<input onclick="updateCategoryArray(8)" type="checkbox" id="c8" name="c8" value="all"><label for="c8"> All</label>
 			<br>
 		</div>
 		</div>
@@ -38,38 +48,7 @@
 		<!-- Restaurants -->
 		<div id="rCont">
 		<h3 class="toggle" id="rToggle" onclick="toggleRestaurants()">Restaurants ></h3>
-		<div class="group" id="restaurants">
-			<input type="checkbox" id="r1" name="Applebee's" value="applebees"><label for="r1"> Applebee's</label>
-			<br>
-			<input type="checkbox" id="r2" name="Arby's" value="arbys"><label for="r2"> Arby's</label>
-			<br>
-			<input type="checkbox" id="r3" name="BoJangle's" value="bojangles"><label for="r3"> BoJangle's</label>
-			<br>
-			<input type="checkbox" id="r4" name="Brooklyn Pizza" value="brooklyn_pizza"><label for="r4"> Brooklyn Pizza</label>
-			<br>
-			<input type="checkbox" id="r5" name="Chick Fil'A" value="chickfila"><label for="r5"> Chick Fil'A</label>
-			<br>
-			<input type="checkbox" id="r6" name="Chipotle" value="chipolte"><label for="r6"> Chipotle</label>
-			<br>
-			<input type="checkbox" id="r7" name="Fazoli's" value="fazolis"><label for="r7"> Fazoli's</label>
-			<br>
-			<input type="checkbox" id="r8" name="Little China" value="little china"><label for="r8"> Little China</label>
-			<br>
-			<input type="checkbox" id="r9" name="McDonald's" value="mcdonalds"><label for="r9"> McDonald's</label>
-			<br>
-			<input type="checkbox" id="r10" name="Mi Casita" value="mi_casita"><label for="r10"> Mi Casita</label>
-			<br>
-			<input type="checkbox" id="r11" name="Olive Garden" value="olive_garden"><label for="r11"> Olive Garden</label>
-			<br>
-			<input type="checkbox" id="r12" name="Pizza Hut" value="pizza_hut"><label for="r12"> Pizza Hut</label>
-			<br>
-			<input type="checkbox" id="r13" name="Taco Bell" value="taco_bell"><label for="r13"> Taco Bell</label>
-			<br>
-			<input type="checkbox" id="r14" name="Wendy's" value="wendys"><label for="r14"> Wendy's</label>
-			<br>
-			<input type="checkbox" id="r15" name="Zaxby's" value="zaxbys"><label for="r15"> Zaxby's</label>
-			<br>
-		</div>
+		<div class="group" id="restaurants"></div>
 		</div>
 		<br>
 	</div>
