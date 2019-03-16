@@ -5,10 +5,47 @@ function isMobileDevice() {
 
 //Cookie tools (borrowed from w3schools)
 function setCookie(cname) {
+	alert(cname);
   var d = new Date();
   d.setTime(d.getTime() + (1825*24*60*60*1000));
   var expires = "expires=" + d.toGMTString();
   document.cookie = "r" + nextR + "=" + cname + ";" + expires + ";path=/";
+  tempName = cname.substring(0,cname.indexOf("|"));
+				tempCat = cname.substring(cname.indexOf("|")+1,cname.length);
+				nameCookie.push(tempName);
+				switch(tempCat) {
+					case "fast food":
+						nameFastFood.push(tempName);
+						catFastFood.push(false);
+						break;
+					case "chain sitdown":
+						nameChainSitdown.push(tempName);
+						catChainSitdown.push(false);
+						break;
+					case "mexican":
+						nameMexican.push(tempName);
+						catMexican.push(false);
+						break;
+					case "italian":
+						nameItalian.push(tempName);
+						catItalian.push(false);
+						break;
+					case "oriental":
+						nameOriental.push(tempName);
+						catOriental.push(false);
+						break;
+					case "american":
+						nameAmerican.push(tempName);
+						catAmerican.push(false);
+						break;
+					case "chicken":
+						nameChicken.push(tempName);
+						catChicken.push(false);
+						break;
+				}
+				nameAll.push(tempName);
+				catAll.push(false);
+				addCheckbox(tempName,nameAll.length-1);
 }
 
 function getCookie(cname) {
@@ -86,38 +123,37 @@ function getCookies() {
 				tempCat = tempStorage.substring(tempStorage.indexOf("|")+1,tempStorage.length);
 				nameCookie.push(tempName);
 				switch(tempCat) {
-					case "ff":
+					case "fast food":
 						nameFastFood.push(tempName);
 						catFastFood.push(false);
 						break;
-					case "cs":
+					case "chain sitdown":
 						nameChainSitdown.push(tempName);
 						catChainSitdown.push(false);
 						break;
-					case "m":
+					case "mexican":
 						nameMexican.push(tempName);
 						catMexican.push(false);
 						break;
-					case "i":
+					case "italian":
 						nameItalian.push(tempName);
 						catItalian.push(false);
 						break;
-					case "o":
+					case "oriental":
 						nameOriental.push(tempName);
 						catOriental.push(false);
 						break;
-					case "am":
+					case "american":
 						nameAmerican.push(tempName);
 						catAmerican.push(false);
 						break;
-					case "c":
+					case "chicken":
 						nameChicken.push(tempName);
 						catChicken.push(false);
 						break;
-					default:
-						nameAll.push(tempName);
-						nameAll.push(false);
 				}
+				nameAll.push(tempName);
+				catAll.push(false);
 			}
 		}
 	}

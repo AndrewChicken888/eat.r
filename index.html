@@ -13,9 +13,10 @@
 		<p style="color:#ffe500;">Add a local restaurant:</p>
 		<p class="newRestaurant">Name: </p>
 		<input type="input" id="newName" class="newRestaurant" placeholder="Name">
-		<p class="newRestaurant">Category: </p>
+		<p class="newRestaurant">*Category: </p>
 		<input type="input" id="newCategory" class="newRestaurant" placeholder="Category">
-		<button type="button" class="newRestaurant" id="inputNew" onclick="setCookie(document.getElementById('newName') + '|' + document.getElementById('newCategory'))">Input</button>
+		<button type="button" class="newRestaurant" id="inputNew" onclick="setCookie(document.getElementById('newName').value + '|' + document.getElementById('newCategory').value)">Input</button>
+		<p>*Type a category in all lowercase exactly as it is depicted in the categories tab</p>
 		<br>
 		<br>
 		<button type="button" id="randomize" onclick="generate()">Randomize</button>
