@@ -15,7 +15,8 @@
 		<input type="input" id="newName" class="newRestaurant" placeholder="Name">
 		<p class="newRestaurant">*Category: </p>
 		<input type="input" id="newCategory" class="newRestaurant" placeholder="Category">
-		<button type="button" class="newRestaurant" id="inputNew" onclick="setCookie(document.getElementById('newName').value + '|' + document.getElementById('newCategory').value)">Input</button>
+		<button type="button" class="newRestaurant" id="inputNew" onclick="setCookie(document.getElementById('newName').value + '|' + document.getElementById('newCategory').value.toLowerCase())">Input</button>
+		<p id="error" class="newRestaurant" style="color:red"></p>
 		<p>*Type a category in all lowercase exactly as it is depicted in the categories tab</p>
 		<br>
 		<br>
@@ -51,6 +52,7 @@
 		<h3 class="toggle" id="rToggle" onclick="toggleRestaurants()">Restaurants ></h3>
 		<div class="group" id="restaurants"></div>
 		</div>
+		<div id="cookies"><button type="button" id="close" onclick="hideCookies()">X</button><p>This website makes use of cookies. Please make sure they are enabled for the best experience</p></div>
 		<br>
 	</div>
 </body>

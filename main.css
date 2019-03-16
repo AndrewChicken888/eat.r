@@ -12,6 +12,26 @@ body {
 	left:0%;
 	padding-left:10px;
 }
+#cookies {
+	z-index: 999 !important;
+	position:fixed;
+	bottom:0;
+	background-color:red;
+	width:100%;
+	left:0%;
+	padding-left:10px;
+	text-align:center;
+}
+#close {
+	width:15px;
+	height:15px;
+	padding:0px;
+	font-size:10px;
+	position:absolute;
+	border:1px solid black;
+	top:0%;
+	right:10px;
+}
 #main_container {
 	position:absolute;
 }
